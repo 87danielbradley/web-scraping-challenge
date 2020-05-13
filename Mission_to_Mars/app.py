@@ -29,7 +29,7 @@ def home():
 def scrape():
     mars_db.mars_data.drop()
     mars_data = scrape_mars.scrape()
-    mars_db.mars_data.insert_one(mars_data)
+    mars_db.mars_data.insertOne(mars_data)
     return redirect('/')
 
 if __name__  == "__main__":

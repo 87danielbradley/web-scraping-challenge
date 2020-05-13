@@ -7,12 +7,13 @@ import pandas as pd
 import time
 
 def scrape():
+    marsFacts()
     return{
         "mars_title": findNews(),
         "mars_paragraph": findPar(),
         "mars_image": findImage(),
         "mars_weather": findTweet(),
-        "mars_facts": marsFacts(),
+        
         "mars_hemispheres": marsHemispheres()
     }
 
@@ -39,7 +40,7 @@ def findPar():
     time.sleep(1)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
- \
+
     news_p=soup.find('div', class_="article_teaser_body").text
     browser.quit()
     return(news_p)
