@@ -1,4 +1,4 @@
-# Dependencies
+
 from splinter import Browser
 from bs4 import BeautifulSoup
 import requests
@@ -23,9 +23,9 @@ def findNews():
     
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
     browser.visit(url)
+    time.sleep(1)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    #Scrape the NASA Mars News Site and collect the latest News Title
     news_title = soup.find('div', class_="image_and_description_container").h3.text
     browser.quit()
     return(news_title)
@@ -36,9 +36,10 @@ def findPar():
     browser = Browser('chrome', **executable_path, headless=False)
     url = 'https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest'
     browser.visit(url)
+    time.sleep(1)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    #Scrape the NASA Mars News Site and collect the latest News Paragraph Text
+ \
     news_p=soup.find('div', class_="article_teaser_body").text
     browser.quit()
     return(news_p)
@@ -46,15 +47,16 @@ def findPar():
 def findImage():
     executable_path = {'executable_path': 'chromedriver.exe'}
     browser = Browser('chrome', **executable_path, headless=False)
-    #Use splinter to navigate the site and find the image url for the current Featured Mars Image
+   
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     browser.click_link_by_partial_text('FULL IMAGE')
-    #scrape featured image
+ 
     url = 'https://www.jpl.nasa.gov'+soup.find('a', class_="button fancybox").get("data-link")
     browser.visit(url)
+    time.sleep(1)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     featured_image_url = "https://www.jpl.nasa.gov" +soup.find('figure', class_='lede').a.img.get('src')

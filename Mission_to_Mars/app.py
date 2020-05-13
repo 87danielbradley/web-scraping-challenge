@@ -22,14 +22,14 @@ mars_db = client.mars
 @app.route("/")
 def home():
     # Find one record of data from the mongo database
-    mars_data = mars_db.output.find()
+    mars_data = mars_db.mars_data.find()
     return render_template("index.html", mars_data=mars_data)
 
 @app.route("/scrape")
 def scrape():
-    mars_db.output.drop()
+    mars_db.mars_data.drop()
     mars_data = scrape_mars.scrape()
-    mars_db.output.insert_one(mars_data)
+    mars_db.mars_data.insert_one(mars_data)
     return redirect('/')
 
 if __name__  == "__main__":
