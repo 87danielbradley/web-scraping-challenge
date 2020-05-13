@@ -7,7 +7,6 @@ import pandas as pd
 import time
 
 def scrape():
-    marsFacts()
     return{
         "mars_title": findNews(),
         "mars_paragraph": findPar(),
@@ -75,20 +74,6 @@ def findTweet():
     mars_weather = soup.body.find('div',{"class":["css-901oao","r-hkyrab","r-1qd0xha","r-a023e6","r-16dba41","r-ad9z0x","r-bcqeeo","r-bnwqim","r-qvutc0"]}, lang='en').find('span', {"class":["css-901oao","css-16my406","r-1qd0xha","r-ad9z0x","r-bcqeeo","r-qvutc0"]}).text
     browser.quit()
     return(mars_weather)
-    
-def marsFacts():
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
-    url = "https://space-facts.com/mars/"
-    browser.visit(url)
-    time.sleep(1)
-
-    html = browser.html
-    mars_facts_df = pd.read_html(html)
-    mars_facts_df = mars_facts_df[0].rename(columns={0:'Description',1:'Value'})
-    mars_facts_df.to_html("Mars_Facts.html")
-    browser.quit()
-    return(mars_facts_df.to_html)
 
 def marsHemispheres():
     executable_path = {'executable_path': 'chromedriver.exe'}
