@@ -22,7 +22,7 @@ mars_db = client.mars
 @app.route("/")
 def home():
     # Find one record of data from the mongo database
-    mars_data = mars_db.mars_data.find()
+    mars_data = mars_db.mars_data.find_one()
     return render_template("index.html", mars_data=mars_data)
 
 @app.route("/scrape")
