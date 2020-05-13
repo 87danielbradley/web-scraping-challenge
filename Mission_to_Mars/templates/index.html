@@ -43,7 +43,7 @@
 		<div class="row">
 			<div class="container col-md-7">
 				<h3>Featured Mars Image</h3>
-				<img src={{mars_data.mars_image}}>
+				<img src={{mars_data.mars_image}} height = "400" width = "500">
 			</div>
 			<div class="container col-md-5">
 				<div class="row">
@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class="col">
 						<h3>Mars Facts</h3>
-						<table border="1" class="dataframe">
+						<table border="1" class="dataframe table-striped">
 						  <thead>
 							<tr style="text-align: right;">
 							  <th></th>
@@ -120,12 +120,14 @@
 		</div>
 		<div class="row">
 			{% for item in mars_data.mars_hemispheres %}
-			<div class = "col-5"> </b>
-			<img src="{{item.img_url}}">
+			<div class = "col-6"> 
+			<img src="{{item.img_url}}" height = "300" width = "300">
+			<h3> {{item.title}}</h3>
+			
 			</div>
-			<div>
-				<h3> {{item.title}}</h3>
-			</div>
+			
+				
+			
 			{% endfor %}
 		</div>
 
